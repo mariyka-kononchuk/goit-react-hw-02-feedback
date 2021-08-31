@@ -1,0 +1,39 @@
+.transactionHistory {
+  margin: 0;
+  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+
+  width: 500px;
+
+  background-color: wheat;
+}
+.head {
+  background-color: rgb(40, 204, 253);
+  color: white;
+}
+
+.title {
+  padding: 15px;
+}
+.item {
+  background-color: white;
+}
+.type {
+  padding: 5px;
+  text-align: left;
+  padding-left: 15px;
+  color: grey;
+}
+.amount {
+}
+.currency {
+}
+
+.amount,
+.currency {
+  padding: 5px;
+  text-align: center;
+  color: grey;
+}
