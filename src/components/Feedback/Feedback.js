@@ -1,10 +1,23 @@
 //import PropTypes from 'prop-types';
 import React from 'react';
 import s from './Feedback.module.css';
+import Controls from '../Controls/Controls';
 
 class Feedback extends React.Component {
+    static defaultProps = {
+        initialValue:0,
+    }
+    state = {
+            good: this.props.initialValue,
+            neutral: this.props.initialValue,
+            bad: this.props.initialValue, 
+        };
+    
     goodFeedbackIncrement = () => {
-            console.log("кликнули на Good");
+        console.log("кликнули на Good");
+        this.setState(prevState => ({
+           good: prevState.value + 1,
+        }));
     }
     neutralFeedbackIncrement = () => {
             console.log("кликнули на Neutral");
@@ -17,11 +30,11 @@ class Feedback extends React.Component {
         return (
             <div className="s.feedback">
                 <span className="s.title">Please leave feedback</span>
-                <div>
-                    <button type="button" onClick={this.goodFeedbackIncrement}>Good</button>
-                    <button type="button" onClick={this.neutralFeedbackIncrement}>Neutral</button>
-                    <button type="button" onClick={this.badFeedbackIncrement}>Bad</button>
-                </div>
+                <Controls
+                    onGoodFeedbackIncrement={this.goodFeedbackIncrement}
+                    onNeutralFeedbackIncrement={this.neutralFeedbackIncrement}
+                    onBadFeedbackIncrement={this.badFeedbackIncrement}
+                />
             </div>
 
         );

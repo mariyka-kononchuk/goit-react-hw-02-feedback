@@ -10,9 +10,9 @@ class Statistics extends React.Component {
             <div className="s.feedback">
                 <span className="s.title">Statistics</span>
                 <div>
-                    <p >Good</p>
-                    <p >Neutral</p>
-                    <p>Bad</p>
+              {/* <p >Good: { state.good}</p> */}
+                    {/* <p >Neutral: { state.neutral}</p>
+                    <p>Bad: { state.bad}</p> */}
                 </div>
             </div>
 

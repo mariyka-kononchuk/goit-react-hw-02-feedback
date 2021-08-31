@@ -15,7 +15,7 @@ import transactions from './data/transactions.json';
 export default function App() {
   return (
     <Container>
-      <Feedback />
+      <Feedback/>
       <Statistics/>
       <Profile
         name={user.name}
