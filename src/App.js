@@ -1,32 +1,48 @@
-//components
+import React from 'react';
 import Container from './components/Container/Container';
-import Feedback from './components/Feedback/Feedback';
-import Profile from './components/Profile/Profile';
+import Section from './components/Section/Section';
+import FeedbackOptions from './components/FeedbackOptions/FeedbackOptions';
 import Statistics from './components/Statistics/Statistics';
-import FriendList from './components/FriendList/FriendList';
-import TransactionHistory from './components/TransactionHistory/TransactionHistory';
-// data
-import user from './data/user.json';
-import statisticalData from './data/statistical-data.json';
-import friends from './data/friends.json';
-import transactions from './data/transactions.json';
 
-//virtual DOM
-export default function App() {
-  return (
-    <Container>
-      <Feedback/>
-      <Statistics/>
-      <Profile
-        name={user.name}
-        tag={user.tag}
-        location={user.location}
-        avatar={user.avatar}
-        stats={user.stats}
-      />
-      
-      <FriendList friends={friends} />
-      <TransactionHistory items={transactions} />
-    </Container>
-  );
+class App extends React.Component {
+    static defaultProps = {
+        initialValue:0,
+    }
+    state = {
+            good: this.props.initialValue,
+            neutral: this.props.initialValue,
+            bad: this.props.initialValue, 
+        };
+    
+    goodFeedbackIncrement = () => {
+      console.log("кликнули на Good");
+      this.setState(prevState => ({
+        good: prevState.value + 1,
+        }));
+    }
+    neutralFeedbackIncrement = () => {
+            console.log("кликнули на Neutral");
+    }
+    badFeedbackIncrement = () => {
+            console.log("кликнули на Bad");
+    }
+    render() {
+        return (
+          <Container>
+            <Section title="Please leave feedback">
+              <FeedbackOptions
+                options={1}
+                onLeaveFeedback={1}
+                onGoodFeedbackIncrement={this.goodFeedbackIncrement}
+                onNeutralFeedbackIncrement={this.neutralFeedbackIncrement}
+                onBadFeedbackIncrement={this.badFeedbackIncrement}/>
+            </Section>
+            <Section title="Statistics">
+              <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={1} positivePercentage={1} />
+            </Section>
+          </Container>
+        );
+    }
 }
+
+export default App;

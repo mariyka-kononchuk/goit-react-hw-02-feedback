@@ -1,6 +1,7 @@
-import React from 'react';
+//import PropTypes from 'prop-types';
+import s from './FeedbackOptions.module.css';
 
-const Controls = ({onGoodFeedbackIncrement,onNeutralFeedbackIncrement,onBadFeedbackIncrement}) => {
+const FeedbackOptions = ({onGoodFeedbackIncrement,onNeutralFeedbackIncrement,onBadFeedbackIncrement}) => {
     return (
         <div>
             <button type="button" onClick={onGoodFeedbackIncrement}>Good</button>
@@ -10,4 +11,4 @@ const Controls = ({onGoodFeedbackIncrement,onNeutralFeedbackIncrement,onBadFeedb
     )
 }
 
-export default Controls;
+export default FeedbackOptions;

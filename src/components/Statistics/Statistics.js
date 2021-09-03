@@ -1,25 +1,18 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import s from './Statistics.module.css';
 
 
-
-class Statistics extends React.Component {
-    render() {
-        return (
-            <div className="s.feedback">
-                <span className="s.title">Statistics</span>
-                <div>
-              {/* <p >Good: { state.good}</p> */}
-                    {/* <p >Neutral: { state.neutral}</p>
-                    <p>Bad: { state.bad}</p> */}
-                </div>
-            </div>
-
-        );
-
-    }
+const Statistics = ({good, neutral, bad}) => {
+    return (
+        <div>
+            <p >Good: {good}</p> 
+            <p >Neutral: {neutral}</p>
+            <p>Bad: {bad}</p>
+        </div> 
+    )
 }
+
+
 
 // Statistics.propTypes = {
 //   title: PropTypes.string,
