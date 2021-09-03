@@ -3,6 +3,7 @@ import Container from './components/Container/Container';
 import Section from './components/Section/Section';
 import FeedbackOptions from './components/FeedbackOptions/FeedbackOptions';
 import Statistics from './components/Statistics/Statistics';
+import Notification from './components/Notification/Notification';
 
 class App extends React.Component {
     static defaultProps = {
@@ -17,14 +18,20 @@ class App extends React.Component {
     goodFeedbackIncrement = () => {
       console.log("кликнули на Good");
       this.setState(prevState => ({
-        good: prevState.value + 1,
+        neutral: prevState.value + 1,
         }));
     }
     neutralFeedbackIncrement = () => {
-            console.log("кликнули на Neutral");
+      console.log("кликнули на Neutral");
+      this.setState(prevState => ({
+        good: prevState.value + 1,
+        }));
     }
     badFeedbackIncrement = () => {
-            console.log("кликнули на Bad");
+      console.log("кликнули на Bad");
+      this.setState(prevState => ({
+        bad: prevState.value + 1,
+        }));
     }
     render() {
         return (
@@ -38,7 +45,16 @@ class App extends React.Component {
                 onBadFeedbackIncrement={this.badFeedbackIncrement}/>
             </Section>
             <Section title="Statistics">
-              <Statistics good={this.state.good} neutral={this.state.neutral} bad={this.state.bad} total={1} positivePercentage={1} />
+              {this.state.good === 0 && this.state.neutral === 0 && this.state.bad === 0 ?
+                <Notification message="No feedback given"/>
+                :
+                <Statistics
+                  good={this.state.good}
+                  neutral={this.state.neutral}
+                  bad={this.state.bad}
+                  total={1}
+                  positivePercentage={1} />}
+              
             </Section>
           </Container>
         );
