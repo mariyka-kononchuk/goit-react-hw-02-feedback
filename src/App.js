@@ -1,13 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Container from './components/Container/Container';
 import Section from './components/Section/Section';
 import FeedbackOptions from './components/FeedbackOptions/FeedbackOptions';
 import Statistics from './components/Statistics/Statistics';
 import Notification from './components/Notification/Notification';
 
-class App extends React.Component {
+class App extends Component {
     static defaultProps = {
-        initialValue:0,
+        initialValue: 0,
     }
     state = {
             good: this.props.initialValue,
@@ -18,21 +18,33 @@ class App extends React.Component {
     goodFeedbackIncrement = () => {
       console.log("кликнули на Good");
       this.setState(prevState => ({
-        neutral: prevState.value + 1,
+        good: prevState.good + 1,
         }));
     }
     neutralFeedbackIncrement = () => {
       console.log("кликнули на Neutral");
       this.setState(prevState => ({
-        good: prevState.value + 1,
+        neutral: prevState.neutral + 1,
         }));
     }
     badFeedbackIncrement = () => {
       console.log("кликнули на Bad");
       this.setState(prevState => ({
-        bad: prevState.value + 1,
+        bad: prevState.bad + 1,
         }));
     }
+  
+    countTotalFeedback = () => {
+      const total = this.state.bad + this.state.neutral + this.state.good;
+      return total;
+    }
+  
+  countPositiveFeedbackPercentage = () => {
+      const totalFeedback = this.countTotalFeedback()
+      const positivePercentage = this.state.good/totalFeedback*100;
+      return positivePercentage;
+    }
+  
     render() {
         return (
           <Container>
@@ -52,8 +64,8 @@ class App extends React.Component {
                   good={this.state.good}
                   neutral={this.state.neutral}
                   bad={this.state.bad}
-                  total={1}
-                  positivePercentage={1} />}
+                  total={this.countTotalFeedback()}
+                  positivePercentage={this.countPositiveFeedbackPercentage()} />}
               
             </Section>
           </Container>
