@@ -18,7 +18,6 @@ class App extends Component {
   };
     
   leaveFeedback = (option) => {
-    console.log("кликнули на", option);
     this.setState(prevState => ({
       [option] : prevState[option] + 1,
       }));
