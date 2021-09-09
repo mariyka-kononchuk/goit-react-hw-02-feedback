@@ -36,18 +36,19 @@ class App extends Component {
   
   render() {
     const { good, neutral, bad } = this.state;
+    const totalFeedback = this.countTotalFeedback();
     return (
       <Container>
 
         <Section title="Please leave feedback">
           <FeedbackOptions
-            options={['good', 'neutral', 'bad']}
+            options={Object.keys(this.state)}
             onLeaveFeedback={this.leaveFeedback}
           />
         </Section>
 
         <Section title="Statistics">
-          {this.state.good === 0 && this.state.neutral === 0 && this.state.bad === 0 ?
+          {totalFeedback <= 0  ?
             <Notification message="No feedback given"/>
             :
             <Statistics
